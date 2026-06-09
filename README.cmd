@@ -2,18 +2,39 @@
 
 Computer Vision project for multi-person tracking and crowd behavior analysis using YOLOv11, ByteTrack and Kalman Filtering.
 
+## Preview
+
+### Crowd Movement Heatmap
+
+![Heatmap](crowd_heatmap.png)
+
+### Tracking Example
+
+![Tracking Example](frames/frame_050.jpg)
+
+---
+
 ## Overview
 
-This project analyzes pedestrian movement in a crowded scene by:
+This project analyzes pedestrian movement in a crowded urban environment using modern computer vision techniques.
 
-- Detecting people using YOLOv11
-- Tracking individuals using ByteTrack
-- Extracting movement trajectories
-- Applying Kalman filtering for trajectory smoothing
-- Computing crowd statistics
-- Generating movement visualizations and heatmaps
+The system detects and tracks multiple people throughout a video sequence, extracts movement trajectories, computes crowd statistics, and generates visualizations that help understand movement patterns.
 
-The original video contains 795 frames. For computational efficiency, 100 uniformly sampled frames were processed and analyzed.
+The original video contains **795 frames**. For computational efficiency, **100 uniformly sampled frames** were processed and analyzed.
+
+---
+
+## Features
+
+- Person detection using YOLOv11
+- Multi-object tracking using ByteTrack
+- Trajectory extraction and analysis
+- Kalman filter trajectory smoothing
+- Crowd statistics computation
+- People counting over time
+- Crowd movement heatmap generation
+- CSV export of tracking data
+- Annotated video generation
 
 ---
 
@@ -29,16 +50,40 @@ The original video contains 795 frames. For computational efficiency, 100 unifor
 
 ---
 
+## Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/mtkokovic-cmd/Crowd-Movement-Analysis.git
+cd Crowd-Movement-Analysis
+```
+
+Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+Run the project:
+
+```bash
+python main.py
+```
+
+---
+
 ## Processing Pipeline
 
-1. Load video.
-2. Uniformly sample 100 frames.
-3. Detect people using YOLOv11.
-4. Track individuals using ByteTrack.
-5. Extract trajectory coordinates.
-6. Apply Kalman filtering.
-7. Compute movement statistics.
-8. Generate visualizations and CSV reports.
+1. Load the input video.
+2. Uniformly sample 100 frames from the original sequence.
+3. Detect pedestrians using YOLOv11.
+4. Track detected people using ByteTrack.
+5. Extract center coordinates of each tracked object.
+6. Save trajectory data into CSV files.
+7. Apply Kalman filtering for trajectory smoothing.
+8. Compute movement statistics.
+9. Generate visualizations and reports.
 
 ---
 
@@ -52,9 +97,9 @@ The original video contains 795 frames. For computational efficiency, 100 unifor
 - Average detected people: 7.32
 - Valid trajectory segments: 19
 
-### Additional Metrics
+### Key Findings
 
-- Longest trajectory: 1386.13 px
+- Longest trajectory segment: 1386.13 px
 - Fastest trajectory segment: 165.52 px/s
 
 ---
@@ -81,6 +126,8 @@ The original video contains 795 frames. For computational efficiency, 100 unifor
 
 ## Generated Outputs
 
+The system automatically generates:
+
 - `output_video.mp4`
 - `trajectories.csv`
 - `person_summary.csv`
@@ -89,18 +136,31 @@ The original video contains 795 frames. For computational efficiency, 100 unifor
 - `kalman_trajectory_plot.png`
 - `crowd_heatmap.png`
 - `people_count_plot.png`
+- `frames/` (100 processed frames)
 
 ---
 
 ## Limitations
 
-Since only 100 sampled frames were processed, ID switching may occur when individuals are temporarily lost and re-detected by the tracker. Therefore, the reported results refer to trajectory segments rather than guaranteed unique individuals.
+Since only 100 uniformly sampled frames were processed, temporary ID switching may occur when individuals are lost and re-detected by the tracker.
+
+For this reason, the reported results refer to trajectory segments rather than guaranteed unique individuals.
+
+---
+
+## Future Improvements
+
+- DeepSORT integration
+- Person re-identification (ReID)
+- Real-world speed estimation
+- Crowd density estimation
+- Pedestrian flow analysis
 
 ---
 
 ## Author
 
-Matea Koković
+**Matea Koković**
 
-Faculty of Electrical Engineering (ETF)
+Faculty of Electrical Engineering (ETF)  
 University of Belgrade
